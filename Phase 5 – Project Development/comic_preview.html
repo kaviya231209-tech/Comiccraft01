@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Comic Preview</title>
+    <style>
+        body { margin:0; font-family:Arial,sans-serif; background:#eef5fb; color:#202938; }
+        .wrap { max-width:1000px; margin:35px auto; padding:20px; }
+        h1 { text-align:center; }
+        .panel {
+            background:#fff; margin:25px 0; padding:22px;
+            border-radius:16px; box-shadow:0 8px 24px rgba(0,0,0,.10);
+        }
+        .panel img { width:100%; max-width:850px; display:block; margin:15px auto; border-radius:10px; }
+        .scene { font-style:italic; color:#667085; }
+        .story { white-space:pre-wrap; line-height:1.6; }
+        .actions { text-align:center; margin:30px 0; }
+        a {
+            display:inline-block; margin:6px; padding:12px 18px;
+            border-radius:9px; text-decoration:none; background:#1769e0; color:#fff;
+        }
+        a.secondary { background:#475467; }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <h1>📖 Your Comic Preview</h1>
+    {% for panel in layout %}
+    <section class="panel">
+        <h2>Panel {{ panel.panel }}: {{ panel.title }}</h2>
+        <img src="{{ panel.image_path }}" alt="Comic panel {{ panel.panel }}">
+        <p class="scene">{{ panel.scene_description }}</p>
+        <div class="story">{{ panel.text }}</div>
+    </section>
+    {% endfor %}
+
+    <div class="actions">
+        <a href="{{ pdf_path }}" download>📥 Download Your Comic as PDF</a>
+        <a class="secondary" href="/">✨ Go Create Another Comic</a>
+    </div>
+</div>
+</body>
+</html>
